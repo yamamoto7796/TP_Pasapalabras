@@ -14,13 +14,13 @@ def generar_diccionario(lista):
     return diccionario_lista
 
 
-def seleccion_palabras_mayor_a_5(diccionario_seleccion):
+def seleccion_palabras_mayor_a_5(diccionario):
     """Esta función genera un diccionario nuevo removiendo las palabras que tienen 4 o menos letras en total.
     
     Autor: Aaron Granda"""
 
     diccionario_mayor_a_5 = {}
-    diccionario_2 = generar_diccionario(diccionario_seleccion)
+    diccionario_2 = generar_diccionario(diccionario)
 
     for clave, valor in diccionario_2.items():
         if len(clave) >= 5:
@@ -71,12 +71,12 @@ def diccionario_candidato(diccionario):
     return diccionario_ordenado
         
 
-def contador_palabras_totales_diccionario(diccionario_final):
+def contador_palabras_totales_diccionario(diccionario_contador_1):
     """Esta función cuenta las definiciones totales que hay. .
     
     Autor: Aaron Granda"""
 
-    diccionario_5 = diccionario_candidato(diccionario_final)
+    diccionario_5 = diccionario_candidato(diccionario_contador_1)
     contador_palabras = 0
     for clave in diccionario_5.keys():
         contador_palabras += 1
@@ -84,29 +84,29 @@ def contador_palabras_totales_diccionario(diccionario_final):
     return contador_palabras
 
 
-def contador_por_letra(diccionario_final_3):
+def contador_por_letra(diccionario_contador_2):
     """Esta función cuenta cuántas palabras hay por cada letra del alfabeto.
     
     Autor: Aaron Granda"""
 
 
-    dicc_letras = {}
-    diccionario_5 = diccionario_candidato(diccionario_final_3)
+    dicc_cont_letras = {}
+    diccionario_5 = diccionario_candidato(diccionario_contador_2)
     for clave in diccionario_5.keys():
-        if clave[0] in dicc_letras:
-            dicc_letras[clave[0]] += 1
+        if clave[0] in dicc_cont_letras:
+            dicc_cont_letras[clave[0]] += 1
         else:
-            dicc_letras[clave[0]] = 1
+            dicc_cont_letras[clave[0]] = 1
     
-    return dicc_letras
+    return dicc_cont_letras
 
 
-def imprimir_total_por_letra(diccionario_letra):
+def imprimir_total_por_letra(diccionario_por_letra):
     """Esta función imprime cuantas palabras hay por cada letra del afabeto.
     
     Autor: Aaron Granda"""
     
-    diccionario_impreso = contador_por_letra(diccionario_letra)
+    diccionario_impreso = contador_por_letra(diccionario_por_letra)
     for clave, valor in diccionario_impreso:
         print(f"Letra: '{clave}' - Cantidad de palabras: {valor}")
 
