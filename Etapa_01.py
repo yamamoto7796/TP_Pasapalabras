@@ -94,7 +94,7 @@ def Seguir_jugando():
     Autor: Steven Guerrero
     """
     respuestas_positivas = ["SI","si","Si","sI","S","s","YES","Yes","yes","y","Y","true","True"]
-    respuestas_negativas = ["No","NO","nO","n","N","false","False"]
+    respuestas_negativas = ["No","NO","nO","no","n","N","false","False"]
     validacion = input("¿Desea seguir jugando? Escriba SI si desea seguir jugando, y escriba NO si desea salir:\n",)
     if validacion in respuestas_positivas:
         validacion = True

@@ -28,14 +28,14 @@ def Diez_letras_ordenadas():
     abecedario = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w','x', 'y', 'z']
     random.shuffle(abecedario)
     diezletras = (sorted(abecedario[0:10]))
-    if "ñ" in diezletras:
-        for letra in diezletras:
-            if letra == "ñ":
-                letra = "ni"
-        orddiezletras = sorted(diezletras)
-        for letra in orddiezletras:
-            if letra == "ni":
-                letra = "ñ"
+    if "ñ" in diezletras: #Como la "ñ" es un caso excepcional y se ubica luego de la "z" en ASCII, procedemos a ordenarla.
+        for letra in range(10):
+            if diezletras[letra] == "ñ": #Si la letra actual es = "ñ", la cambiamos por "n0" temporalmente para poder ordenarla.
+                diezletras[letra] = "n0"
+        orddiezletras = sorted(diezletras) #La ordena nuevamente con las "n0"
+        for letra in range(10):
+            if orddiezletras[letra] == "n0": #Por ultimo, vuelve a convertir las "n0" en "ñ".
+                orddiezletras[letra] = "ñ"
     else :                                  #agregue esto para que pueda devolver la lista en caso de que la ñ no este 
         orddiezletras = sorted(diezletras)  #es que sino daba un error "local variable 'orddiezletras' referenced before assignment"
     return orddiezletras                    #porque no estaba asignada la variable
