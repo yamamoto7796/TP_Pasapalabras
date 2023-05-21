@@ -26,7 +26,6 @@ def comenzar_juego(diccionario_palabras):
         lista_definiciones = Definiciones_para_el_rosco(diccionario_palabras, lista_letras)
         sigue_jugando, puntaje_final = comenzar_partida(lista_letras, lista_definiciones, puntaje_final)
     limpiar_pantalla()
-    mostrar_despedida_juego()
     
 def mostrar_bienvenida_juego():
     """muestra el mensaje de inicio y los nombres de los integrantes del grupo
@@ -64,6 +63,6 @@ def main():
     continuar = input("Presione enter para continuar...")
     limpiar_pantalla()
     comenzar_juego(diccionario_palabras)
-
+    mostrar_despedida_juego()
 main()
 
