@@ -7,7 +7,7 @@ import time
 
 def mostrar_despedida_juego():
     """Muestra el mensaje de despedida del juego
-        Autor: Jonatan Misael Cruz
+       Autor: Jonatan Misael Cruz
     """
     print()
     print(f"************ ¡Gracias por jugar nuestro juego! **************")
