@@ -1,5 +1,4 @@
 from Etapa_01 import jugar, SUBPOSICION_DEFINICION_LISTA_DEFINICIONES,SUBPOSICION_PALABRA_LISTA_DEFINICIONES 
-from Etapa_03 import Diez_letras_ordenadas, Definiciones_para_el_rosco
 
 
 def Creacion_lista_vacia_aciertos_y_errores(lista_letras):
@@ -22,8 +21,8 @@ def Creacion_lista_vacia_aciertos_y_errores(lista_letras):
     lista_aciertos_y_errores = []
     posicion_lista_aciertos_y_errores = 0
     while len(lista_aciertos_y_errores) < len(lista_letras):
-        lista_aciertos_y_errores.append(" ")                #*aca tira un error "list assignment index out of range" , porque esta fuera del rango
-        posicion_lista_aciertos_y_errores += 1              #le pongo un append para que se solucione 
+        lista_aciertos_y_errores.append(" ")                
+        posicion_lista_aciertos_y_errores += 1              
     return lista_aciertos_y_errores
 
 def Seguir_jugando():
@@ -32,16 +31,21 @@ def Seguir_jugando():
     Autor: Steven Guerrero
     """
     respuestas_positivas = ["SI","si","Si","sI","S","s","YES","Yes","yes","y","Y","true","True"]
-    respuestas_negativas = ["No","NO","nO","no","n","N","false","False"]
-    validacion = input("¿Desea seguir jugando? Escriba SI si desea seguir jugando, y escriba NO si desea salir:\n",)
-    if validacion in respuestas_positivas:
-        validacion = True
-    elif validacion in respuestas_negativas:
-        validacion = False
-    #Falta agregar las excepciones
+    respuestas_negativas = ["No","NO","nO","n", "no","N","false","False"]
+    respuesta = input("¿Desea seguir jugando? Escriba SI si desea seguir jugando, y escriba NO si desea salir:\n",)
+    volver_a_preguntar = True
+    while volver_a_preguntar:
+        if respuesta in respuestas_positivas:
+            validacion = True
+            volver_a_preguntar = False
+        elif respuesta in respuestas_negativas:
+            validacion = False
+            volver_a_preguntar = False
+        else:
+            respuesta = input("Debe elegir una de las 2 opciones, ¿desea seguir jugando? Escriba SI si desea seguir jugando, y escriba NO si desea salir:\n",)
     return validacion
 
-def Imprimir_resumen_de_juego(lista_letras, Lista_definiciones, lista_palabras_ingresadas, lista_aciertos_y_errores):
+def Imprimir_resumen_de_juego(lista_letras, lista_definiciones, lista_palabras_ingresadas, lista_aciertos_y_errores):
     """Esta función imprime en pantalla el resumen de la ronda.
     Esto incluye las 10 letras que se usaron en esta ronda, la palabra correcta a adivinar de cada letra
     y la palabra que ingresó el jugador en caso que se equivocara.
@@ -57,7 +61,7 @@ def Imprimir_resumen_de_juego(lista_letras, Lista_definiciones, lista_palabras_i
     
     print("¡Ha concluido la partida!. Los resultados son:\n")
     for posicion_turno in range(0,len(lista_letras)):
-        palabra_de_turno = Lista_definiciones[posicion_turno][SUBPOSICION_PALABRA_LISTA_DEFINICIONES]
+        palabra_de_turno = lista_definiciones[posicion_turno][SUBPOSICION_PALABRA_LISTA_DEFINICIONES]
         if lista_aciertos_y_errores[posicion_turno] == "a":
             print("Turno letra", lista_letras[posicion_turno], " - Palabra de ", len(palabra_de_turno)," letras - ", palabra_de_turno," - acierto")
         elif lista_aciertos_y_errores[posicion_turno] == "e":
@@ -67,28 +71,20 @@ def Imprimir_resumen_de_juego(lista_letras, Lista_definiciones, lista_palabras_i
 
 
 
-def comenzar_juego(dicc_palabras):
+def comenzar_partida(lista_letras, lista_definiciones, puntaje_final):
     """
     Esta funcion se encarga de empezar a correr la partida del juego
     Autor: Steven Guerrero  , colaboracion : Jonatan Misael Cruz
     """
     
-    puntaje_final = 0
-    Validacion_seguir_jugando = True #Una variable de control para determinar si el jugador sigue jugando o desea terminar la partida.
-
-    while Validacion_seguir_jugando:
-        Contador_aciertos = 0
-        Contador_errores = 0
-        puntaje = 0 #El jugador empieza con cero puntos su primera partida
-        lista_palabras_ingresadas = [] #Una lista vacía que llevará registro de las palabras ingresadas por el jugador
-        lista_letras = Diez_letras_ordenadas()#random.shuffle(Abecedario) #Se obtiene de funciones de la etapa 3
-        posicion_turno = 0 #Turno en el que se encuentra el jugador ne este momento. Empieza en cero.
-        Lista_definiciones = Definiciones_para_el_rosco(dicc_palabras, lista_letras) #Se obtiene de funciones de la etapa 3
-        lista_aciertos_y_errores = Creacion_lista_vacia_aciertos_y_errores(lista_letras)
-        Contador_aciertos, Contador_errores = jugar(lista_letras, lista_aciertos_y_errores, lista_palabras_ingresadas, Lista_definiciones, Contador_aciertos, Contador_errores, posicion_turno)
-        Imprimir_resumen_de_juego(lista_letras, Lista_definiciones, lista_palabras_ingresadas, lista_aciertos_y_errores)
-        puntaje_final += ((Contador_aciertos*10) - (Contador_errores*3))
-        print("Puntaje final: ", puntaje_final)
-        Validacion_seguir_jugando = Seguir_jugando()
-        
+    Contador_aciertos = 0
+    Contador_errores = 0
+    lista_palabras_ingresadas = [] #Una lista vacía que llevará registro de las palabras ingresadas por el jugador
+    posicion_turno = 0 #Turno en el que se encuentra el jugador ne este momento. Empieza en cero.
+    lista_aciertos_y_errores = Creacion_lista_vacia_aciertos_y_errores(lista_letras)
+    Contador_aciertos, Contador_errores = jugar(lista_letras, lista_aciertos_y_errores, lista_palabras_ingresadas, lista_definiciones, Contador_aciertos, Contador_errores, posicion_turno)
+    Imprimir_resumen_de_juego(lista_letras, lista_definiciones, lista_palabras_ingresadas, lista_aciertos_y_errores)
+    puntaje_final += ((Contador_aciertos*10)-(Contador_errores*3))
+    print("Puntaje final: ", puntaje_final)
+    return Seguir_jugando(), puntaje_final  
             

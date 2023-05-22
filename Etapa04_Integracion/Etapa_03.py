@@ -1,6 +1,6 @@
 import random
 
-#ACA IRIA LA FUNCION DE SELECCION DE PALABRAS
+
 def Definiciones_para_el_rosco(DiccionarioFiltrado,DiezLetras):
     """
     Esta función se encarga de seleccionar aleatoriamente las 10 palabras que se usaran en el rosco, junto con sus definiciones (ordenadas alfabeticamente).
@@ -12,7 +12,7 @@ def Definiciones_para_el_rosco(DiccionarioFiltrado,DiezLetras):
     for letra in DiezLetras:
         palabra_valida = False
         while not palabra_valida:
-            par_seleccionado = random.choice(list(DiccionarioFiltrado.items()))#*le agregue el .items() por que daba error  de tipo de dato
+            par_seleccionado = random.choice(list(DiccionarioFiltrado.items()))
             pal_selec = par_seleccionado[0]
             def_selec = par_seleccionado[1]
             if pal_selec[0] == letra:
@@ -36,8 +36,8 @@ def Diez_letras_ordenadas():
         for letra in range(10):
             if orddiezletras[letra] == "n0": #Por ultimo, vuelve a convertir las "n0" en "ñ".
                 orddiezletras[letra] = "ñ"
-    else :                                  #agregue esto para que pueda devolver la lista en caso de que la ñ no este 
-        orddiezletras = sorted(diezletras)  #es que sino daba un error "local variable 'orddiezletras' referenced before assignment"
-    return orddiezletras                    #porque no estaba asignada la variable
+    else :                                   
+        orddiezletras = sorted(diezletras)  
+    return orddiezletras                   
 
 
