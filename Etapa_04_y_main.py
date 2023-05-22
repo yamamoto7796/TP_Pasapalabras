@@ -25,7 +25,7 @@ def comenzar_juego(diccionario_palabras):
         lista_letras = Diez_letras_ordenadas()
         lista_definiciones = Definiciones_para_el_rosco(diccionario_palabras, lista_letras)
         sigue_jugando, puntaje_final = comenzar_partida(lista_letras, lista_definiciones, puntaje_final)
-    limpiar_pantalla()
+        limpiar_pantalla()
     
 def mostrar_bienvenida_juego():
     """muestra el mensaje de inicio y los nombres de los integrantes del grupo
