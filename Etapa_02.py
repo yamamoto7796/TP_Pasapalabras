@@ -2,7 +2,7 @@ from datos import obtener_lista_definiciones
 
 
 
-def generar_diccionario(lista):
+def generar(lista):
     """Esta función convierte la lista 'definiciones' en un diccionario dando como clave la palabra y como valor su definición.
     
     Autor: Aaron Granda"""
@@ -14,12 +14,12 @@ def generar_diccionario(lista):
     return diccionario_lista
 
 
-def seleccion_palabras_mayor_a_5(lista_seleccion):
-    """Esta función genera un diccionario nuevo con sacando a las palabras que tienen 4 o menos letras totales.
+def seleccion_palabras_mayor_a_5(largo):
+    """Esta función genera un diccionario nuevo con las palabras que son mayores o iguales a 5.
     
     Autor: Aaron Granda"""
 
-    diccionario_2 = generar_diccionario(lista_seleccion) 
+    diccionario_2 = generar(largo) 
     diccionario_mayor_a_5 = {}
     for clave, valor in diccionario_2.items():
         if len(clave) >= 5:
@@ -28,7 +28,7 @@ def seleccion_palabras_mayor_a_5(lista_seleccion):
     return diccionario_mayor_a_5
 
 
-def dicc_quitar_tilde(lista_definiciones_con_tilde):    #es la principal a ser llamada
+def dicc_quitar_tilde(definiciones_con_tilde):    #es la principal a ser llamada
 
     """Retorna un diccionario sacando las tildes de algunas palabras que la llevan en la clave.
     >>> quitar_tilde({'árbol': s.m. BOTÁNICA. Planta de tronco leñoso que se ramifica a mayor o menor altura del suelo, formando una copa.})
@@ -39,37 +39,37 @@ def dicc_quitar_tilde(lista_definiciones_con_tilde):    #es la principal a ser l
     
     Autor: Aaron Granda"""
 
-    # verificar si el usuario tiene que ingresar la palabra con acento
+
     lista_vocales_tildes = ['á', 'é', 'í', 'ó', 'ú']
     lista_vocales = ['a', 'e', 'i', 'o', 'u']
 
-    diccionario_3 = seleccion_palabras_mayor_a_5(lista_definiciones_con_tilde)
+    diccionario_3 = seleccion_palabras_mayor_a_5(definiciones_con_tilde)
     diccionario_sin_tildes = {}
 
     for clave, valor in diccionario_3.items():      
         for num, vocal in enumerate(lista_vocales_tildes):
-            if vocal in lista_vocales_tildes:
+                
                 clave = clave.replace(lista_vocales_tildes[num], lista_vocales[num])
         diccionario_sin_tildes[clave] = valor
 
     
     return diccionario_sin_tildes
 
-def diccionario_candidato(lista_definiciones):
+def ordenar_por_clave(diccionario_candidato):
     """Esta función ordena el diccionario por orden alfabetico según las definiciones.
-    Es el diccionario candidato para la etapa 3.
     
+        
     Autor: Aaron Granda"""
 
     
-    diccionario_4 = dicc_quitar_tilde(lista_definiciones)
+    diccionario_4 = dicc_quitar_tilde(diccionario_candidato)
     diccionario_ordenado = dict(sorted(diccionario_4.items(), key= lambda x: x[0]))
     
     return diccionario_ordenado
         
 #------------ comienzo de funciones para mostrar las cantidades de palabras por letra
 
-def contador_palabras_totales_diccionario(diccionario_final):
+def contador_palabras_totales(diccionario_final):
     """Esta función cuenta las palabras totales del diccionario.
     
     Autor: Aaron Granda"""
@@ -82,7 +82,7 @@ def contador_palabras_totales_diccionario(diccionario_final):
 
 
 def contador_por_letra(diccionario_final_2):
-    """Esta función cuenta cuantas palabras hay por cada letra del abecedario.
+    """Esta función cuenta cuantas palabras hay por cada letra del alfabeto.
     
     Autor: Aaron Granda"""
 
@@ -106,13 +106,15 @@ def imprimir_total_por_letra(diccionario_por_letra):
 
 
 def obtener_diccionario():
-    """ funcion que retorna un diccionario de palabras  obtenido de una lista de definiciones y muestra las cantidades de palabras que hay
+    """Esta es una funcion que retorna un diccionario de palabras obtenido de la lista de definiciones y muestra las 
+    cantidades de palabras que hay.
+    
         Autor: Aaron Granda
     """    
     definiciones = obtener_lista_definiciones()
-    diccionario_palabras = diccionario_candidato(definiciones)
+    diccionario_palabras = ordenar_por_clave(definiciones)
     print()
-    print(f"Palabras en total: {contador_palabras_totales_diccionario(diccionario_palabras)}.")
+    print(f"Palabras en total: {contador_palabras_totales(diccionario_palabras)}.")
     print()
     imprimir_total_por_letra(diccionario_palabras)
     print()
