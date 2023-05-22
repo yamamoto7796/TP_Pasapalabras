@@ -62,7 +62,7 @@ def Validar_longitud_palabra_ingresada(palabra,longitud):
     True
     """
     longitud_palabra = len(palabra)
-    validador02 = longitud_palabra == longitud
+    validador02 = (longitud_palabra == longitud)
     return validador02
 
 

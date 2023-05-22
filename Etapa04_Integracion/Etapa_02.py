@@ -32,8 +32,8 @@ def seleccion_palabras_mayor_a_5(diccionario_seleccion):
 def quitar_tilde(diccionario_tilde):    #es la principal a ser llamada
 
     """Retorna un diccionario sacando las tildes de algunas palabras que la llevan en la clave.
-    >>> quitar_tilde({'árbol': s.m. BOTÁNICA. Planta de tronco leñoso que se ramifica a mayor o menor altura del suelo, formando una copa.})
-    {'arbol': s.m. BOTÁNICA. Planta de tronco leñoso que se ramifica a mayor o menor altura del suelo, formando una copa.} 
+    >>> quitar_tilde({'árbol': 's.m. BOTÁNICA. Planta de tronco leñoso que se ramifica a mayor o menor altura del suelo, formando una copa.'})
+    {'arbol': 's.m. BOTÁNICA. Planta de tronco leñoso que se ramifica a mayor o menor altura del suelo, formando una copa.'} 
     
     >>> quitar_tilde({'enigma': '1.  m. Enunciado de sentido artificiosamente encubierto para que sea difícil de entender o interpretar'})
     {'enigma': '1.  m. Enunciado de sentido artificiosamente encubierto para que sea difícil de entender o interpretar'}
