@@ -64,5 +64,6 @@ def main():
     limpiar_pantalla()
     comenzar_juego(diccionario_palabras)
     mostrar_despedida_juego()
-main()
+
+#main()
 
