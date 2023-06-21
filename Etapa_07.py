@@ -153,7 +153,6 @@ def Registrar_usuario(Registro_Usuarios_Claves):
                     Iniciar_Partida()
                 else:
                     LoginCorrecto()
-                #Hay que agregar el usuario y su clave al archivo csv y el nombre del jugador a la lista de jugadores
 
 def crear_ventana():
     #Definiendo variables globales para las funciones
