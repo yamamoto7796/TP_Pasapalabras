@@ -1,3 +1,4 @@
+'''
 def cargar_config_predeterminada(dicc_config_pred):
     """
     crea el archivo configuracion, con valores predeterminados
@@ -7,6 +8,7 @@ def cargar_config_predeterminada(dicc_config_pred):
     for elemento in dicc_config_pred:
         arch_config.write(elemento + "," + str(dicc_config_pred[elemento])+"\n")
     arch_config.close()
+'''
 
 def ingresar_valor():
     """
@@ -73,12 +75,14 @@ def configuracion():
     realiza las modificaciones.
     Autor: Jonatan Misael Cruz
     """
+    '''
     dicc_configuraciones_predeterminadas = {"LONGITUD_PALABRA_MINIMA": 4,
                                             "CANTIDAD_LETRAS_ROSCO": 10,
                                             "MAXIMO_PARTIDAS": 5,
                                             "PUNTAJE_ACIERTO": 10,
                                             "PUNTAJE_DESACIERTO": 3}
     cargar_config_predeterminada(dicc_configuraciones_predeterminadas)
+    '''
     respuesta = desea_cambiar_configuracion()
     if respuesta == "s":
         lista_elementos_valores = []
@@ -89,4 +93,3 @@ def configuracion():
                     archivo_config.write(elemento[0] + "," + str(elemento[1]) + "\n")
 
 
-configuracion()
