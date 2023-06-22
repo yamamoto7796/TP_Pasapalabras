@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 import random
-from Etapa_04_y_main import *
+#import Etapa_04_y_main
 
 #Constantes
 USUARIO = 0
@@ -96,7 +96,6 @@ def Validar_Clave(Clave01):
 def Iniciar_Partida():
     random.shuffle(Lista_Jugadores)
     ventana.destroy()
-    main()
 
 def Leer_Lineas_de_Usuarios(archivo):
     linea = archivo.readline()
@@ -220,4 +219,4 @@ def crear_ventana():
     ventana.mainloop()
 
 
-crear_ventana()
+#crear_ventana()

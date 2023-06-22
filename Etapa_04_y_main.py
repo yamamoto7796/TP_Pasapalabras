@@ -1,7 +1,10 @@
-from Etapa_02 import obtener_diccionario
-from Etapa_05 import comenzar_partida
+from Etapa_05 import *
 from Etapa_01 import limpiar_pantalla
-from Etapa_03 import Diez_letras_ordenadas, Definiciones_para_el_rosco
+from Etapa_08_final import *
+import Etapa_09
+import Etapa_07
+
+Lista_Jugadores =["Juan","Jose","Facu","Aaron"]
 import random
 import time
 
@@ -15,15 +18,15 @@ def mostrar_despedida_juego():
     print(f"      ©Copyright 2023, Grupo MAGO. All Rights Reserved.")
     time.sleep(5)
 
-def comenzar_juego(diccionario_palabras):
+def comenzar_juego():
     """ Funcion que comienza el juego , iniciando las partidas que se jugaran
         Autor: Jonatan Misael Cruz
     """
-    puntaje_final = 0
+    puntaje_final = Crear_Puntaje_Total(Etapa_07.Lista_Jugadores) #Crea una lista con la cantidad de espacios = a jugadores
     sigue_jugando = True
     while sigue_jugando:
-        lista_letras = Diez_letras_ordenadas()
-        lista_definiciones = Definiciones_para_el_rosco(diccionario_palabras, lista_letras)
+
+        lista_letras,lista_definiciones = mostrar_diccionario_candidato(Etapa_09.LONG_PALABRA_MIN,Etapa_09.CANT_LETRAS_ROSCO)
         sigue_jugando, puntaje_final = comenzar_partida(lista_letras, lista_definiciones, puntaje_final)
         limpiar_pantalla()
     
@@ -53,17 +56,17 @@ def mostrar_bienvenida_juego():
     print()
     print(f"{'*'*60}")
     print()
-    continuar = input("Presione enter para continuar...")
+    input("Presione enter para continuar...")
     limpiar_pantalla()
     
 
-def main():
+def IniciarGame():
+    Etapa_07.crear_ventana()
+    Leer_Config()
     mostrar_bienvenida_juego()
-    diccionario_palabras = obtener_diccionario()
-    continuar = input("Presione enter para continuar...")
+    input("Presione enter para continuar...")
     limpiar_pantalla()
-    comenzar_juego(diccionario_palabras)
+    comenzar_juego()
     mostrar_despedida_juego()
 
-#main()
-
+IniciarGame()

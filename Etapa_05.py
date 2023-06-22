@@ -1,4 +1,9 @@
-from Etapa_01 import jugar, SUBPOSICION_DEFINICION_LISTA_DEFINICIONES,SUBPOSICION_PALABRA_LISTA_DEFINICIONES 
+from Etapa_01 import *
+from Etapa_09 import *
+import Etapa_07
+
+#Lista_Jugadores =["Juan","Jose","Facu","Aaron"]
+
 
 
 def Creacion_lista_vacia_aciertos_y_errores(lista_letras):
@@ -75,16 +80,17 @@ def comenzar_partida(lista_letras, lista_definiciones, puntaje_final):
     """
     Esta funcion se encarga de empezar a correr la partida del juego
     Autor: Steven Guerrero  , colaboracion : Jonatan Misael Cruz
+    Actualizacion 2da Parte: Facundo Cabral
     """
-    
-    Contador_aciertos = 0
-    Contador_errores = 0
+    lista_turnos = Crear_Lista_Turnos(lista_letras)
+    estadisticas = Crear_Estadisticas(Etapa_07.Lista_Jugadores)
+    puntaje_ronda = Crear_Puntaje_Ronda(Etapa_07.Lista_Jugadores)
     lista_palabras_ingresadas = [] #Una lista vacía que llevará registro de las palabras ingresadas por el jugador
     posicion_turno = 0 #Turno en el que se encuentra el jugador ne este momento. Empieza en cero.
+    jugador_turno = 0
     lista_aciertos_y_errores = Creacion_lista_vacia_aciertos_y_errores(lista_letras)
-    Contador_aciertos, Contador_errores = jugar(lista_letras, lista_aciertos_y_errores, lista_palabras_ingresadas, lista_definiciones, Contador_aciertos, Contador_errores, posicion_turno)
+    estadisticas = jugar(lista_letras, lista_aciertos_y_errores, lista_palabras_ingresadas, lista_definiciones, estadisticas, posicion_turno, jugador_turno,lista_turnos,puntaje_ronda)
     Imprimir_resumen_de_juego(lista_letras, lista_definiciones, lista_palabras_ingresadas, lista_aciertos_y_errores)
-    puntaje_final += ((Contador_aciertos*10)-(Contador_errores*3))
+    #puntaje_final += ((Contador_aciertos*10)-(Contador_errores*3))
     print("Puntaje final: ", puntaje_final)
-    return Seguir_jugando(), puntaje_final  
-            
+    return Seguir_jugando(), puntaje_final
