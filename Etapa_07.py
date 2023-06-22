@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 import random
-from Etapa_04_y_main import *
+#from Etapa_04_y_main import *
 
 #Constantes
 USUARIO = 0
