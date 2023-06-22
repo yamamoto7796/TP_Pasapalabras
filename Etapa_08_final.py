@@ -95,7 +95,7 @@ def Convertir_Dicc_Palabras(diccionario_final):
     """
     Esta funcion convierte al diccionario de definiciones y palabras en una lista de listas, para luego poder usarlo en el juego.
      
-    Autor: Facundo Cabral """
+    Autor: Aaron Granda """
     lista_final = list(diccionario_final.items())
     return lista_final
 

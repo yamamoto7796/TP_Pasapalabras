@@ -3,8 +3,6 @@ from Etapa_01 import limpiar_pantalla
 from Etapa_08_final import *
 import Etapa_09
 import Etapa_07
-
-Lista_Jugadores =["Juan","Jose","Facu","Aaron"]
 import random
 import time
 
@@ -22,12 +20,13 @@ def comenzar_juego():
     """ Funcion que comienza el juego , iniciando las partidas que se jugaran
         Autor: Jonatan Misael Cruz
     """
-    puntaje_final = Crear_Puntaje_Total(Etapa_07.Lista_Jugadores) #Crea una lista con la cantidad de espacios = a jugadores
+    puntaje_final = Etapa_09.Crear_Puntaje_Total(Etapa_07.Lista_Jugadores) #Crea una lista con la cantidad de espacios = a jugadores
     sigue_jugando = True
+    contador = 1
     while sigue_jugando:
 
         lista_letras,lista_definiciones = mostrar_diccionario_candidato(Etapa_09.LONG_PALABRA_MIN,Etapa_09.CANT_LETRAS_ROSCO)
-        sigue_jugando, puntaje_final = comenzar_partida(lista_letras, lista_definiciones, puntaje_final)
+        sigue_jugando, puntaje_final, contador = comenzar_partida(lista_letras, lista_definiciones, puntaje_final,contador)
         limpiar_pantalla()
     
 def mostrar_bienvenida_juego():
@@ -62,7 +61,7 @@ def mostrar_bienvenida_juego():
 
 def IniciarGame():
     Etapa_07.crear_ventana()
-    Leer_Config()
+    Etapa_09.Leer_Config()
     mostrar_bienvenida_juego()
     input("Presione enter para continuar...")
     limpiar_pantalla()

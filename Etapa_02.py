@@ -1,7 +1,5 @@
 from datos import obtener_lista_definiciones
 
-
-
 def generar(lista):
     """Esta función convierte la lista 'definiciones' en un diccionario dando como clave la palabra y como valor su definición.
     
