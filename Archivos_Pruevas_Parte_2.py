@@ -1,7 +1,4 @@
-from tkinter import *
 from tkinter import messagebox
-import random
-#import Etapa_04_y_main
 
 #Constantes
 USUARIO = 0
@@ -44,6 +41,8 @@ def ClaveIncorrecta():
 
 def Mensaje_Error_Iniciar_Partida():
     messagebox.showerror("Error de registro de usuario", "Tiene que ingresar al menos un jugador para poder iniciar partida")
+
+# -------- Aquí empiezan las pruebas unitarias --------
 
 #Validaciones de usuario y clave
 
@@ -204,142 +203,7 @@ def Crear_Diccionarios_Usuarios(archivo):
     return Registro_Usuarios_Claves
 
 
-#Funciones asociadas a los botones de la interfaz
+#-------- Funcion para iniciar pruebas doctest --------
 
-def Iniciar_Partida():
-    """ Esta función permite que pueda empezarl el juego de Pasapalabras.
-    Para empezar el juego verifica que haya al menos un jugador introducido y vuelve aleatorio el orden de jugadores introducidos.
-    Finalmente cierra la ventana.
-    Autor: Steven Guerrero
-    """
-    if Lista_Jugadores == []:
-        Mensaje_Error_Iniciar_Partida()
-    else:
-        random.shuffle(Lista_Jugadores)
-        ventana.destroy()
-
-def Ingresar_usuario(Registro_Usuarios_Claves): 
-    """Esta función agrega el usuario introducido a la partida. Esto lo hace agregando a la lista "Lista_Jugadores" que es una variable global.
-    Autor: Steven Guerrero
-    
-    Args:
-        Registro_Usuarios_Claves (diccionario): Diccionario conlos usuarios ya previamente registrados como claves y sus contrasenas como valores.
-    """
-    Usuario01 = Verificar_jugador.get()
-    Clave01 = Verificar_primera_clave.get()
-    Clave02 = Verificar_segunda_clave.get()
-    if Clave01 != Clave02:
-        ClavesIncorrectas()
-    else:
-        if Usuario01 in Lista_Jugadores:
-            UsuarioAgregado()
-        elif Usuario01 in Registro_Usuarios_Claves.keys() and Clave01 == Registro_Usuarios_Claves[Usuario01]:
-            Lista_Jugadores.append(Usuario01)
-            if len(Lista_Jugadores) == MAXIMO_JUGADORES: #Una vez alcanzado el máximo de jugadores, la función llama a "Iniciar_partida" para comenzar el juego y cerrar la ventana.
-                MaximoJugadoresAlcanzado()
-                Iniciar_Partida()
-            else:
-                LoginCorrecto()
-        else:
-            LoginIncorrecto()
-        
-def Registrar_usuario(Registro_Usuarios_Claves):
-    """Esta función agrega el usuario introducido tanto al archivo .csv como a la partida.
-    Autor: Steven Guerrero
-    
-    Args:
-        Registro_Usuarios_Claves (diccionario): Diccionario conlos usuarios ya previamente registrados como claves y sus contrasenas como valores.
-    """
-    Usuario01 = Verificar_jugador.get()
-    Clave01 = Verificar_primera_clave.get()
-    Clave02 = Verificar_segunda_clave.get()
-    Contador_Errores = 0
-    if Clave01 != Clave02:
-        ClavesIncorrectas()
-    else:
-        Contador_Errores += (Validar_Usuario(Usuario01, Registro_Usuarios_Claves) + Validar_Clave(Clave01))
-        if Contador_Errores == 0:
-                archivo = open("usuarios.csv","a+")
-                Texto_a_escribir = "\n" + Usuario01 + "," + Clave01
-                archivo.write(Texto_a_escribir)
-                archivo.close()
-                Lista_Jugadores.append(Usuario01)
-                if len(Lista_Jugadores) == MAXIMO_JUGADORES:
-                    MaximoJugadoresAlcanzado()
-                    Iniciar_Partida()
-                else:
-                    LoginCorrecto()
-
-#Funcion que crea la interfaz gráfica.
-
-def crear_ventana():
-    """Esta función crea la ventana para registrar e ingresar los usuarios que jugaran al Pasapalabras.
-    Autor: Steven Guerrero """
-    #Definiendo variables globales para las funciones
-    global Verificar_jugador
-    global Verificar_primera_clave
-    global Verificar_segunda_clave
-    global ventana
-    global Lista_Jugadores
-    
-    ventana = Tk()
-    ventana.title("Ingreso y Registro de usuario")
-    ventana.geometry("320x200")
-    ventana.resizable(1,1)
-    ventana.iconbitmap("Wizard_Hat.ico")
-    ventana.config(bg="#385f7d")
-
-    Verificar_jugador = StringVar()
-    Verificar_primera_clave = StringVar()
-    Verificar_segunda_clave = StringVar()
-    archivo = open("usuarios.csv","r+")
-    Registro_Usuarios_Claves = Crear_Diccionarios_Usuarios(archivo)
-    archivo.close()
-    Lista_Jugadores = []
-    
-    #Cuadro de Texto "Nombre Jugador"
-    Usuario_Jugador= Label(ventana, text="Nombre Jugador:", bg="#385f7d",fg="white", font=("Century Gothic",9))
-    #Usuario_Alumno.place(x=10, y=10)
-    Usuario_Jugador.grid(row=0, column=0, padx="25", pady="10")
-    
-    #Cuadro de Entrada para Jugador
-    Usuario_Jugador_Entry = Entry(ventana, textvariable=Verificar_jugador)
-    Usuario_Jugador_Entry.grid(row=0, column=1, padx="10", pady="10") 
-    
-    #Cuadro de Texto "Clave"
-    Primera_Clave = Label(ventana, text="Clave:", bg="#385f7d",fg="white", font=("Century Gothic",9))
-    #Usuario_Alumno.place(x=10, y=10)
-    Primera_Clave.grid(row=1, column=0, padx="25", pady="10", sticky="w")
-    
-    #Cuadro de Entrada para primera clave
-    Primera_Clave_Entry = Entry(ventana, show="*", textvariable=Verificar_primera_clave)
-    Primera_Clave_Entry.grid(row=1, column=1, padx="10", pady="10")
-    
-    #Cuadro de Texto "Repetir Clave"
-    Segunda_Clave = Label(ventana, text="Repetir clave:", bg="#385f7d",fg="white", font=("Century Gothic",9))
-    #Usuario_Alumno.place(x=10, y=10)
-    Segunda_Clave.grid(row=2, column=0, padx="25", pady="10", sticky="w")
-    
-    #Cuadro de Entrada para primera clave
-    Segunda_Clave_Entry = Entry(ventana, show="*", textvariable=Verificar_segunda_clave)
-    Segunda_Clave_Entry.grid(row=2, column=1, padx="10", pady="10")
-    
-    #Boton Ingresar
-    Ingresar = Button(ventana, text="Ingresar", command= lambda: Ingresar_usuario(Registro_Usuarios_Claves))
-    Ingresar.place(x=117, y=150)
-    
-    #Boton Iniciar partida
-    Iniciar = Button(ventana, text="Iniciar Partida", command=lambda: Iniciar_Partida())
-    Iniciar.place(x=180, y=150)
-    
-    #Boton Registrar
-    Registrar = Button(ventana, text="Registrar", command=lambda: Registrar_usuario(Registro_Usuarios_Claves))
-    Registrar.place(x=50, y=150)
-    
-        
-    ventana.mainloop()
-
-#crear_ventana()
-
-#import doctest
-#print(doctest.testmod())
+import doctest
+print(doctest.testmod())
