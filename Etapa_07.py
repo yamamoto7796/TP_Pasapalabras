@@ -39,6 +39,9 @@ def UsuarioIncorrecto():
 def ClaveIncorrecta():
     messagebox.showerror("Error de registro de usuario", "La contraseña introducida no es válida.\nDebe tener una longitud entre 6 y 12 caracteres.\nDebe contener al menos una letra mayúscula, una letra minúscula, un número y alguno de los siguientes caracteres especiales: ! #\nNo se puede usar un caracter diferente a los ya mencionados.")
 
+def Mensaje_Error_Iniciar_Partida():
+    messagebox.showerror("Error de registro de usuario", "Tiene que ingresar al menos un jugador para poder iniciar partida")
+
 #def ClaveIncorrectaPrueba():
 #    messagebox.showerror("Error de registro de usuario", """Esto es
 #un texto
@@ -94,8 +97,11 @@ def Validar_Clave(Clave01):
     return Contador_Errores
 
 def Iniciar_Partida():
-    random.shuffle(Lista_Jugadores)
-    ventana.destroy()
+    if Lista_Jugadores == []:
+        Mensaje_Error_Iniciar_Partida()
+    else:
+        random.shuffle(Lista_Jugadores)
+        ventana.destroy()
 
 def Leer_Lineas_de_Usuarios(archivo):
     linea = archivo.readline()
