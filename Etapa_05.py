@@ -50,7 +50,7 @@ def Seguir_jugando():
             respuesta = input("Debe elegir una de las 2 opciones, ¿desea seguir jugando? Escriba SI si desea seguir jugando, y escriba NO si desea salir:\n",)
     return validacion
 
-def Imprimir_resumen_de_juego(lista_letras, lista_definiciones, lista_palabras_ingresadas, lista_aciertos_y_errores):
+def Imprimir_resumen_de_juego(lista_letras, lista_definiciones, lista_palabras_ingresadas, lista_aciertos_y_errores,lista_turnos):
     """Esta función imprime en pantalla el resumen de la ronda.
     Esto incluye las 10 letras que se usaron en esta ronda, la palabra correcta a adivinar de cada letra
     y la palabra que ingresó el jugador en caso que se equivocara.
@@ -62,15 +62,13 @@ def Imprimir_resumen_de_juego(lista_letras, lista_definiciones, lista_palabras_i
         lista_aciertos_y_errores (list): Una lista compuesta por "a" y "e", indicando cuáles turnos el jugador acertó o se equivocó.
         posicion_turno (int): Variable numérica que sirve como contador para saber en cuál posición de las listas nos encontramos.
     """
-    
-    
     print("¡Ha concluido la partida!. Los resultados son:\n")
     for posicion_turno in range(0,len(lista_letras)):
         palabra_de_turno = lista_definiciones[posicion_turno][SUBPOSICION_PALABRA_LISTA_DEFINICIONES]
         if lista_aciertos_y_errores[posicion_turno] == "a":
-            print("Turno letra", lista_letras[posicion_turno], " - Palabra de ", len(palabra_de_turno)," letras - ", palabra_de_turno," - acierto")
+            print("Turno letra", lista_letras[posicion_turno]," - Jugador ",lista_turnos[posicion_turno]," ",Etapa_07.Lista_Jugadores[posicion_turno]," - Palabra de ", len(palabra_de_turno)," letras - ", palabra_de_turno," - acierto")
         elif lista_aciertos_y_errores[posicion_turno] == "e":
-            print("Turno letra", lista_letras[posicion_turno], " - Palabra de ", len(palabra_de_turno)," letras - ", lista_palabras_ingresadas[posicion_turno]," - error - Palabra Correcta: ", palabra_de_turno)
+            print("Turno letra", lista_letras[posicion_turno]," - Jugador ",lista_turnos[posicion_turno]," ",Etapa_07.Lista_Jugadores[posicion_turno]," - Palabra de ", len(palabra_de_turno)," letras - ", lista_palabras_ingresadas[posicion_turno]," - error - Palabra Correcta: ", palabra_de_turno)
     return None
 
 
@@ -90,7 +88,7 @@ def comenzar_partida(lista_letras, lista_definiciones, puntaje_final):
     jugador_turno = 0
     lista_aciertos_y_errores = Creacion_lista_vacia_aciertos_y_errores(lista_letras)
     estadisticas = jugar(lista_letras, lista_aciertos_y_errores, lista_palabras_ingresadas, lista_definiciones, estadisticas, posicion_turno, jugador_turno,lista_turnos,puntaje_ronda)
-    Imprimir_resumen_de_juego(lista_letras, lista_definiciones, lista_palabras_ingresadas, lista_aciertos_y_errores)
+    Imprimir_resumen_de_juego(lista_letras, lista_definiciones, lista_palabras_ingresadas, lista_aciertos_y_errores,lista_turnos)
     #puntaje_final += ((Contador_aciertos*10)-(Contador_errores*3))
     print("Puntaje final: ", puntaje_final)
     return Seguir_jugando(), puntaje_final
