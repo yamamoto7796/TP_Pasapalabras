@@ -19,6 +19,7 @@ def mostrar_despedida_juego():
 def comenzar_juego():
     """ Funcion que comienza el juego , iniciando las partidas que se jugaran
         Autor: Jonatan Misael Cruz
+        Actualizacion 2da Parte: Facundo Cabral
     """
     puntaje_final = Etapa_09.Crear_Puntaje_Total(Etapa_07.Lista_Jugadores) #Crea una lista con la cantidad de espacios = a jugadores
     sigue_jugando = True
