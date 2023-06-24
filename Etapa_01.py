@@ -84,6 +84,7 @@ def Comparar_palabra_ingresada_con_respuesta(palabra,respuesta):
 def hay_aciertos_o_errores(palabra_de_turno, palabra_ingresada, posicion_turno, estadisticas, lista_aciertos_y_errores,jugador_turno,puntaje_ronda):
     """Funcion que determina si hubo aciertos o errores, retornandolos
        Autor: Steven Guerrero
+       Actualizacion 2da Parte: Jose Adrian
     """
     jugadoractual = Etapa_07.Lista_Jugadores[jugador_turno]
     if Comparar_palabra_ingresada_con_respuesta(palabra_de_turno, palabra_ingresada):
@@ -122,6 +123,7 @@ def obtener_palabra(longitud_palabra_de_turno):
 def mostrar_tablero(lista_letras, lista_aciertos_y_errores, estadisticas, letra, longitud_palabra_de_turno, definicion_de_turno,jugador_turno,lista_turnos):
     """muestra el tablero por pantalla con las letras, las definiciones, los aciertos y errores
        Autor: Steven Guerrero       , Colaboracion: Jonatan Cruz
+       Actualizacion 2da Parte: Facundo Cabral
     """
     print()
     for posicion in range(len(lista_letras)):
@@ -143,6 +145,7 @@ def mostrar_tablero(lista_letras, lista_aciertos_y_errores, estadisticas, letra,
 def jugar(lista_letras, lista_aciertos_y_errores,lista_palabras_ingresadas, Lista_definiciones, estadisticas, posicion_turno,jugador_turno,lista_turnos,puntaje_ronda):
     """Funcion que realiza las jugadas de cada partida , retornando los errores y aciertos que se obtuvieron
        Autor: Steven Guerrero , Colaboracion: Jonatan Cruz
+       Actualizacion 2da Parte: Facundo Cabral
     """
     
     while posicion_turno<len(lista_letras):
@@ -160,5 +163,9 @@ def jugar(lista_letras, lista_aciertos_y_errores,lista_palabras_ingresadas, List
     return estadisticas
 
 def actualizar_turnos(lista_turnos,jugador_turno,posicion_turno):
+    """
+    Funcion que actualiza en la lista de turnos el turno actual del jugador.
+    Autor: Facundo Cabral
+    """
     lista_turnos[posicion_turno] = jugador_turno+1
     return lista_turnos

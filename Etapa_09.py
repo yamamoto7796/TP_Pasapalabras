@@ -3,7 +3,7 @@ def Leer_Config():
     '''
     Funcion que leera el archivo "configuracion.csv" y definira los valores en variables constantes
     durante toda la partida.
-    Autor: Facundo Cabral
+    Autor: Jose Adrian
     '''
     #Los valores por defecto definidos como constantes.
     LONG_PAL_MIN_DEF = 4
@@ -31,7 +31,7 @@ def Leer_Config():
 def Crear_Puntaje_Total(Lista_Jugadores):
     '''
     Crea una lista con el numero total de jugadores y sus respectivos puntajes totales.
-    Autor:Facundo Cabral
+    Autor:Jose Adrian
     '''
     puntaje_final = []
     for i in range(len(Lista_Jugadores)):
@@ -42,7 +42,7 @@ def Crear_Puntaje_Total(Lista_Jugadores):
 def Crear_Puntaje_Ronda(Lista_Jugadores):
     '''
     Crea una lista con el numero total de jugadores y sus respectivos puntajes de la ronda actual.
-    Autor:Facundo Cabral
+    Autor:Jose Adrian
     '''
     puntaje_ronda = []
     for i in range(len(Lista_Jugadores)):
@@ -63,7 +63,7 @@ def Crear_Estadisticas(Lista_Jugadores):
 def Crear_Lista_Turnos(letras_seleccionadas):
     '''
     Esta funcion crea el tablero donde se vera el turno actual del jugador.
-    Autor:Facundo Cabral
+    Autor:Jose Adrian
     '''    
     lista_turnos = []
     for i in range(len(letras_seleccionadas)):

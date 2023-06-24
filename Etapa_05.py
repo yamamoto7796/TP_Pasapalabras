@@ -118,7 +118,7 @@ def comenzar_partida(lista_letras, lista_definiciones, puntaje_final,contador):
     puntaje_ronda = Etapa_09.Crear_Puntaje_Ronda(Etapa_07.Lista_Jugadores)
     lista_palabras_ingresadas = [] #Una lista vacía que llevará registro de las palabras ingresadas por el jugador
     posicion_turno = 0 #Turno en el que se encuentra el jugador ne este momento. Empieza en cero.
-    jugador_turno = 0
+    jugador_turno = 0 #Es el turno del jugador actual.
     lista_aciertos_y_errores = Creacion_lista_vacia_aciertos_y_errores(lista_letras)
     estadisticas = jugar(lista_letras, lista_aciertos_y_errores, lista_palabras_ingresadas, lista_definiciones, estadisticas, posicion_turno, jugador_turno,lista_turnos,puntaje_ronda)
     Imprimir_resumen_de_juego(lista_letras, lista_definiciones, lista_palabras_ingresadas, lista_aciertos_y_errores,lista_turnos)
