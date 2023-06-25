@@ -104,7 +104,7 @@ OMISION = "Omision"
 CONFIG = "Configuracion"
 
 
-def mostrar_configuraciones(dicc_config):
+def mostrar_configuraciones():
     """
     muestra por pantalla los valores de los elementos de la configuracion
     y si fueron obtenidos por omision o por configuracion.
@@ -115,6 +115,14 @@ def mostrar_configuraciones(dicc_config):
                              ("MAXIMO_PARTIDAS", 5),
                              ("PUNTAJE_ACIERTO", 10),
                              ("PUNTAJE_DESACIERTO", 3)]
+    dicc_config = {}
+    archivo_config = open('configuracion.csv')
+    linea = archivo_config.readline()
+    while linea:
+        elemento, valor = linea.strip().split(',')
+        dicc_config[elemento] = valor
+        linea = archivo_config.readline()
+    archivo_config.close()
     dicc_estado_valores = {}
     for posicion in range(len(lista_valores_defecto)):
         if lista_valores_defecto[posicion][0] in dicc_config:
