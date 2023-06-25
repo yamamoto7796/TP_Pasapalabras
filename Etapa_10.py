@@ -30,7 +30,7 @@ def ingresar_valor(posicion):
                     valor = input("Valor invalido , debe ingresar un numero mayor o igual que '4':  ")
                     print()
             elif posicion == 1 :
-                if 0<= int(valor) <= 27:
+                if 1<= int(valor) <= 27:
                     es_valido = True
                 else:
                     valor = input("Valor invalido , debe ingresar un numero entre '0' y '27':  ")
