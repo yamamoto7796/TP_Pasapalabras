@@ -119,7 +119,7 @@ def mostrar_configuraciones():
     archivo_config = open('configuracion.csv')
     linea = archivo_config.readline()
     while linea:
-        elemento, valor = linea.strip().split(',')
+        elemento, valor = linea.rstrip("\n").split(',')
         dicc_config[elemento] = valor
         linea = archivo_config.readline()
     archivo_config.close()
