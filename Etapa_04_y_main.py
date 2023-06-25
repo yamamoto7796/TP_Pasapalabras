@@ -3,6 +3,7 @@ from Etapa_01 import limpiar_pantalla
 from Etapa_08_final import *
 import Etapa_09
 import Etapa_07
+from Etapa_10 import configuracion, mostrar_configuraciones
 import random
 import time
 
@@ -61,11 +62,14 @@ def mostrar_bienvenida_juego():
     
 
 def IniciarGame():
-    Etapa_07.crear_ventana()
-    Etapa_09.Leer_Config()
     mostrar_bienvenida_juego()
+    configuracion()
+    limpiar_pantalla()
+    Etapa_09.Leer_Config()
+    mostrar_configuraciones()
     input("Presione enter para continuar...")
     limpiar_pantalla()
+    Etapa_07.crear_ventana()
     comenzar_juego()
     mostrar_despedida_juego()
 
