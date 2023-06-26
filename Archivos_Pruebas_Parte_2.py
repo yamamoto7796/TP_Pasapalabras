@@ -292,31 +292,67 @@ def Comparar_palabra_ingresada_con_respuesta(palabra,respuesta):
         validacion = True
     return validacion
 
-def quitar_tilde(diccionario_tilde):    #es la principal a ser llamada
-
-    """Retorna un diccionario sacando las tildes de algunas palabras que la llevan en la clave.
-    >>> quitar_tilde([['árbol', 's.m. BOTÁNICA. Planta de tronco leñoso que se ramifica a mayor o menor altura del suelo, formando una copa.']])
-    {'arbol': 's.m. BOTÁNICA. Planta de tronco leñoso que se ramifica a mayor o menor altura del suelo, formando una copa.'}
-    >>> quitar_tilde([['enigma', '1.  m. Enunciado de sentido artificiosamente encubierto para que sea difícil de entender o interpretar']])
-    {'enigma': '1.  m. Enunciado de sentido artificiosamente encubierto para que sea difícil de entender o interpretar'}
+def ordenar_letras(lista):
+    """
+    Esta funcion ordena las letras del abecedario alfabeticamente.
     
-    Autor: Aaron Granda"""
+    Autor: Aaron Granda
 
-    # verificar si el usuario tiene que ingresar la palabra con acento
-    lista_vocales_tildes = ['á', 'é', 'í', 'ó', 'ú']
-    lista_vocales = ['a', 'e', 'i', 'o', 'u']
+    >>> lista_letras = ['b','f','e','g','q','x','u','i','z','l','m','n','a','k]
+    >>> ordenar_letras(lista_letras)
+    ['a', 'b', 'e', 'f', 'g', 'i', 'k', 'l', 'm', 'n', 'q', 'u', 'x', 'z']
+    """
 
-    diccionario_3 = seleccion_palabras_mayor_a_5(diccionario_tilde)
-    diccionario_sin_tildes = {}
+    lista_ordenada = sorted(lista, key= lambda palabra: palabra.replace('ñ', 'n0'))
+    return lista_ordenada
 
-    for clave, valor in diccionario_3.items():      
-        for num, vocal in enumerate(lista_vocales_tildes):
-            if vocal in lista_vocales_tildes:
-                clave = clave.replace(lista_vocales_tildes[num], lista_vocales[num])
-        diccionario_sin_tildes[clave] = valor
 
+def quitar_tilde(palabra):
+    """
+    Esta funcion quita la tilde de la palabra que la lleva
+
+    Autor: Aaron Granda
+
+    >>> palabra1 = 'árbol'
+    >>> quitar_tilde(palabra1)
+    arbol
+
+    >>> palabra2 = 'unicidad'
+    >>> quitar_tilde(palabra2)
+    unicidad
+    """
+    vocales_con_tilde = ['á', 'é', 'í', 'ó', 'ú']
+    vocales_sin_tilde = ['a', 'e', 'i', 'o', 'u']
+
+    for i in range(len(vocales_con_tilde)):       
+        palabra = palabra.replace(vocales_con_tilde[i], vocales_sin_tilde[i])
     
-    return diccionario_sin_tildes
+    return palabra
+
+def palabras_segun_longitud(diccionario, LONGITUD_PALABRA_MINIMA):
+    """
+    Esta funcion recibe el diccionario de palabras y definiciones y segun la longitud que indique el usuario se va
+    generando el nuevo diccionario con la longitud especificada por el mismo usuario.
+
+    Autor: Aaron Granda
+
+    >>> diccionario = {'poste': 'm. Madero piedra o columna colocada verticalmente para servir de apoyo o de señal',
+                   'recaudacion': 'f. Acción de recaudar',
+                   'zamba': 'f. Danza cantada popular del noroeste de la Argentina',
+                   'orbita', 'f. Trayectoria curva que describe un cuerpo en su movimiento alrededor de un centro'}
+    
+    >>> LONGITUD_PALABRA_MINIMA = 6
+
+    >>> palabra_segun_longitud(diccionario, LONGITUD_PALABRA_MINIMA)
+    {'recaudacion': 'f. Acción de recaudar',
+    'orbita', 'f. Trayectoria curva que describe un cuerpo en su movimiento alrededor de un centro'}
+    """
+
+    diccionario_seleccion = {}
+    for palabra, definicion in diccionario.items():
+        if len(palabra) >= LONGITUD_PALABRA_MINIMA:
+            diccionario_seleccion[palabra] = definicion
+    return diccionario_seleccion
 #-------- Funcion para iniciar pruebas doctest --------
 
 import doctest
